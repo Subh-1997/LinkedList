@@ -1,0 +1,82 @@
+1. Delete the Middle Node of a Linked List
+
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+        // Edge case: return nullptr if there is only one node.
+        if (head.next == null)
+            return null;
+        
+        // Initialize two pointers, 'slow' and 'fast'.
+        ListNode slow = head, fast = head.next.next;
+        
+        // Let 'fast' move forward by 2 nodes, 'slow' move forward by 1 node each step.
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        // When 'fast' reaches the end, remove the next node of 'slow' and return 'head'.
+        slow.next = slow.next.next;
+        return head;
+   
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Reverse Nodes in k-Group
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+      if(head==null || k==1){
+          return head;
+      }
+      ListNode dummy = new ListNode(0);
+      dummy.next = head;
+
+      ListNode curr=dummy , next=dummy, prev=dummy;
+
+      int count=0;
+      while(curr.next!=null){
+          curr=curr.next;
+          count++;
+      } 
+
+      while(count>=k){
+          curr=prev.next;
+          next=curr.next;
+          for(int i=1;i<k;i++){
+              curr.next=next.next;
+              next.next=prev.next;
+              prev.next=next;
+              next=curr.next;
+          }
+          count-=k;
+          prev=curr;
+      } 
+      return dummy.next; 
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Middle of the Linked List
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+       while(fast!=null && fast.next!=null){
+           slow=slow.next;
+           fast=fast.next.next;
+       }
+       return slow;
+    }
+}
