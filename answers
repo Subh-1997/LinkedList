@@ -111,3 +111,21 @@ class Solution {
         return dummy.next;
     }
 }
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Reverse linked list
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode curr = head;
+        ListNode prev = null;// newhead
+        while(curr!=null){
+          ListNode temp = curr.next;
+          curr.next=prev;
+          prev=curr;
+          curr=temp; 
+        }
+        return prev;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Design Linked List
