@@ -129,3 +129,48 @@ class Solution {
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 6.Design Linked List
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.Remove Nth Node From End of List
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+         ListNode start = new ListNode();
+        start.next = head;
+        ListNode fast = start;
+        ListNode slow = start;     
+
+        for(int i = 1; i <= n; i++)
+            fast = fast.next;
+    
+        while(fast.next != null)
+        {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        
+        slow.next = slow.next.next;
+        
+        return start.next;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Remove Duplicates from Sorted List
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode node) {
+      if(node==null){
+          return node;
+        }
+        ListNode head = node;
+        while(node.next!=null){
+          if(node.val==node.next.val){
+             node.next=node.next.next;
+          }else{
+            node=node.next;
+          }
+        }
+        return head;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.
