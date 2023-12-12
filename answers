@@ -173,4 +173,44 @@ class Solution {
     }
 }
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-9.
+9.Copy List with Random Pointer
+
+class Solution {
+    public Node copyRandomList(Node head) {
+    if(head==null){
+        return null;
+    }
+       Node iter = head; 
+       Node front = head; 
+
+       while(iter!=null){
+           front=iter.next;
+           Node copy=new Node(iter.val);
+           iter.next=copy;
+           copy.next=front;
+           iter=front;
+       }
+       iter=head;
+       while(iter!=null){
+           if(iter.random!=null){
+               iter.next.random=iter.random.next;
+           }
+           iter=iter.next.next;
+       }
+        iter=head;
+         Node dummyHead=new Node(iter.val);
+         Node copy=dummyHead;
+
+         while(iter!=null){
+            front=iter.next.next;
+
+            copy.next=iter.next;
+            copy=copy.next;
+
+            iter.next=front;
+            iter=front;
+         }
+
+         return dummyHead.next;
+    }
+}
